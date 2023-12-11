@@ -97,7 +97,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: <Widget>[
                         const SizedBox(height: 20),
                         if (iconUrl != null)
-                          Image.network(iconUrl, width: 150, height: 250, fit: BoxFit.contain),
+                          Image.network(iconUrl, width: 150, height: 200, fit: BoxFit.contain),
                         weatherDetailCard('Temperature', '${weatherData!['main']['temp']}°F', Icons.thermostat),
                         weatherDetailCard('Condition', '${weatherData!['weather'][0]['main']}', Icons.cloud),
                         weatherDetailCard('Humidity', '${weatherData!['main']['humidity']}%', Icons.opacity),
