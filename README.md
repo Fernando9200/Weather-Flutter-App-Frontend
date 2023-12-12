@@ -33,15 +33,21 @@ cd [project-directory]
 ```bash
 flutter pub get
 ```
-### Running the Application
+### Launching the Application and Connecting to a Local Backend Server
 
-1. Ensure the backend server is running (default: `http://localhost:3000`).
+To set up and run your application with a local backend:
 
-2. Start the Flutter app:
+1. Find the local IP address of your machine (for example, `192.168.x.x`) and use this IP in your Flutter app to make requests (e.g., `http://192.168.x.x:3000/weather`). Also, ensure the backend server is running.
+
+2. In the details_screen.dart file of the Flutter project, modify the URL in the network request and change `var url = Uri.parse('https://weather-flutter-app-backend.onrender.com/weather?city=${widget.city}');` to `var url = Uri.parse('http://192.168.x.x:3000/weather?city=${widget.city}');` replacing `192.168.x.x` with your actual local IP address.
+
+3. If you prefer not to run the backend locally, you can continue using the deployed version available at `https://weather-flutter-app-backend.onrender.com`.
+
+4. Start the Flutter app:
 ```bash
 flutter run
 ```
-3. Open a simulator or connect a device to run the app.
+5. Open a simulator or connect a device to run the app.
 
 ### Using the Application
 
