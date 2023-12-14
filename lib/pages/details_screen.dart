@@ -14,6 +14,7 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   Map<String, dynamic>? weatherData;
   String? errorMessage;
+  bool isLoading = true; // Added loading state
 
   @override
   void initState() {
@@ -22,6 +23,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   }
 
   fetchWeather() async {
+    setState(() {
+      isLoading = true; // Start loading
+    });
     var url = Uri.parse('https://weather-flutter-app-backend.onrender.com/weather?city=${widget.city}');
     try {
       var response = await http.get(url);
@@ -29,15 +33,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
         setState(() {
           weatherData = json.decode(response.body);
           errorMessage = null;
+          isLoading = false; // Data fetched, stop loading
         });
       } else {
         setState(() {
           errorMessage = "City not found. Please enter a valid city name.";
+          isLoading = false; // Error occurred, stop loading
         });
       }
     } catch (e) {
       setState(() {
-        errorMessage = e.toString();
+        errorMessage = "An error occurred: ${e.toString()}";
+        isLoading = false; // Error occurred, stop loading
       });
     }
   }
@@ -97,7 +104,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: <Widget>[
                         const SizedBox(height: 20),
                         if (iconUrl != null)
-                          Image.network(iconUrl, width: 150, height: 200, fit: BoxFit.contain),
+                          Image.network(iconUrl, width: 150, height: 180, fit: BoxFit.contain),
                         weatherDetailCard('Temperature', '${weatherData!['main']['temp']}°F', Icons.thermostat),
                         weatherDetailCard('Condition', '${weatherData!['weather'][0]['main']}', Icons.cloud),
                         weatherDetailCard('Humidity', '${weatherData!['main']['humidity']}%', Icons.opacity),
