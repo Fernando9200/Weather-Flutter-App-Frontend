@@ -105,7 +105,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         const SizedBox(height: 20),
                         if (iconUrl != null)
                           Image.network(iconUrl, width: 150, height: 180, fit: BoxFit.contain),
-                        weatherDetailCard('Temperature', '${weatherData!['main']['temp']}°F', Icons.thermostat),
+                        weatherDetailCard('Temperature', '${weatherData!['main']['temp']}°F', Icons.thermostat), // '${((weatherData!['main']['temp'] - 32) * 5 / 9).toStringAsFixed(1)}°C',
                         weatherDetailCard('Condition', '${weatherData!['weather'][0]['main']}', Icons.cloud),
                         weatherDetailCard('Humidity', '${weatherData!['main']['humidity']}%', Icons.opacity),
                         weatherDetailCard('Location', '${weatherData!['name']}, ${weatherData!['sys']['country']}', Icons.location_on),
