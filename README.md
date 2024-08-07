@@ -6,6 +6,19 @@ This repository contains the frontend code of a weather application built using 
 
 The app has a simple and user-friendly interface, allowing users to enter a city name and view the current weather conditions for that location. The app interacts with the backend server to retrieve weather data.
 
+## Screen Captures
+Below are some screenshots of the app running on an emulator to give you a preview of the user interface:  
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    <img src="https://github.com/user-attachments/assets/4eb7a4d4-9797-4275-ac87-46316c086897" alt="screenshot" width="190px" style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/057f69ec-9ef3-4e05-8b13-11a64d62ad9a" alt="screenshot" width="190px" style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/5a5f7168-a3f5-445d-b774-8fd8895dc2a3" alt="screenshot" width="190px" style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/21544dbe-91ca-4489-8640-89d7ce3e3d6c" alt="screenshot" width="190px" style="margin: 10px;">
+    <img src="https://github.com/user-attachments/assets/aa7cb484-12a9-4edb-bbcd-3c14a40d6554" alt="screenshot" width="190px" style="margin: 10px;">
+</div>
+
+
+
+
 ### Features
 
 - Search weather data by city name.
