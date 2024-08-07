@@ -26,7 +26,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
     setState(() {
       isLoading = true; // Start loading
     });
-    var url = Uri.parse('https://weather-flutter-app-backend.onrender.com/weather?city=${widget.city}');
+    var url = Uri.parse(
+        'https://weather-flutter-app-backend.onrender.com/weather?city=${widget.city}');
     try {
       var response = await http.get(url);
       if (response.statusCode == 200) {
@@ -96,7 +97,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
             ? SingleChildScrollView(
                 child: ConstrainedBox(
                   constraints: BoxConstraints(
-                    minHeight: MediaQuery.of(context).size.height - AppBar().preferredSize.height - MediaQuery.of(context).padding.top,
+                    minHeight: MediaQuery.of(context).size.height -
+                        AppBar().preferredSize.height -
+                        MediaQuery.of(context).padding.top,
                   ),
                   child: IntrinsicHeight(
                     child: Column(
@@ -104,11 +107,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       children: <Widget>[
                         const SizedBox(height: 20),
                         if (iconUrl != null)
-                          Image.network(iconUrl, width: 150, height: 180, fit: BoxFit.contain),
-                        weatherDetailCard('Temperature', '${weatherData!['main']['temp']}°F', Icons.thermostat), // '${((weatherData!['main']['temp'] - 32) * 5 / 9).toStringAsFixed(1)}°C',
-                        weatherDetailCard('Condition', '${weatherData!['weather'][0]['main']}', Icons.cloud),
-                        weatherDetailCard('Humidity', '${weatherData!['main']['humidity']}%', Icons.opacity),
-                        weatherDetailCard('Location', '${weatherData!['name']}, ${weatherData!['sys']['country']}', Icons.location_on),
+                          Image.network(iconUrl,
+                              width: 150, height: 180, fit: BoxFit.contain),
+                        weatherDetailCard(
+                            'Temperature',
+                            '${((weatherData!['main']['temp'] - 32) * 5 / 9).toStringAsFixed(1)}°C',
+                            Icons
+                                .thermostat), // Change to ${weatherData!['main']['temp']}°F to use Fahrenheit temperature
+                        weatherDetailCard(
+                            'Condition',
+                            '${weatherData!['weather'][0]['main']}',
+                            Icons.cloud),
+                        weatherDetailCard(
+                            'Humidity',
+                            '${weatherData!['main']['humidity']}%',
+                            Icons.opacity),
+                        weatherDetailCard(
+                            'Location',
+                            '${weatherData!['name']}, ${weatherData!['sys']['country']}',
+                            Icons.location_on),
                         const Spacer(),
                         const SizedBox(height: 20),
                       ],
@@ -117,31 +134,32 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               )
             : Center(
-          child: errorMessage != null
-              ? Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    const Icon(
-                      Icons.error_outline,
-                      color: Colors.redAccent,
-                      size: 50,
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      errorMessage!,
-                      style: const TextStyle(
-                        color: Colors.redAccent,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                child: errorMessage != null
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const Icon(
+                            Icons.error_outline,
+                            color: Colors.redAccent,
+                            size: 50,
+                          ),
+                          const SizedBox(height: 10),
+                          Text(
+                            errorMessage!,
+                            style: const TextStyle(
+                              color: Colors.redAccent,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      )
+                    : const CircularProgressIndicator(
+                        valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.blueAccent),
                       ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                )
-              : const CircularProgressIndicator(
-                  valueColor: AlwaysStoppedAnimation<Color>(Colors.blueAccent),
-                ),
-        ),
+              ),
       ),
     );
   }
